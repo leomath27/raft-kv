@@ -1,0 +1,53 @@
+{
+ "seed": 102,
+ "nodes": 5,
+ "duration": 60.04695395099998,
+ "ok": 36720,
+ "indeterminate": 0,
+ "valid": true,
+ "faults": {
+  "partition-leader": 5,
+  "partition-halves": 3,
+  "kill-random": 3,
+  "kill-leader": 1,
+  "crash-all": 2,
+  "pause-leader": 1
+ },
+ "failover_ms": [
+  216,
+  215,
+  214,
+  170,
+  267,
+  216,
+  216,
+  216
+ ],
+ "report": {
+  "keys": {
+   "k0": {
+    "ops": 7264,
+    "result": true
+   },
+   "k1": {
+    "ops": 7254,
+    "result": true
+   },
+   "k2": {
+    "ops": 7463,
+    "result": true
+   },
+   "k3": {
+    "ops": 7356,
+    "result": true
+   },
+   "k4": {
+    "ops": 7388,
+    "result": true
+   }
+  },
+  "valid": true,
+  "unknown": false
+ },
+ "digest": "applied:30778 digest:c936bf19a1b2974b keys:6"
+}

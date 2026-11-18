@@ -1,0 +1,49 @@
+{
+ "seed": 2,
+ "nodes": 3,
+ "duration": 12.036357200000111,
+ "ok": 6788,
+ "indeterminate": 0,
+ "valid": false,
+ "faults": {
+  "kill-leader": 2,
+  "partition-leader": 1
+ },
+ "failover_ms": [
+  184,
+  283,
+  424
+ ],
+ "report": {
+  "keys": {
+   "k0": {
+    "ops": 1350,
+    "result": false,
+    "counterexample": "(<p1 read None -> 10000035 ok [3035347663261..3035348032752]>, 10000036)"
+   },
+   "k1": {
+    "ops": 1409,
+    "result": false,
+    "counterexample": "(<p5 read None -> 40000036 ok [3035321377350..3035321560898]>, 10000032)"
+   },
+   "k2": {
+    "ops": 1370,
+    "result": false,
+    "counterexample": "(<p6 read None -> 60000038 ok [3035420958411..3035421101291]>, 50000041)"
+   },
+   "k3": {
+    "ops": 1361,
+    "result": false,
+    "counterexample": "(<p1 read None -> 30000007 ok [3034942961497..3034943197094]>, 40000007)"
+   },
+   "k4": {
+    "ops": 1303,
+    "result": false,
+    "counterexample": "(<p5 read None -> 10000102 ok [3036224035104..3036224140416]>, 60000096)"
+   }
+  },
+  "valid": false,
+  "unknown": false
+ },
+ "digest": "applied:5842 digest:76d023980e4d9c6f keys:6"
+}

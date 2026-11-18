@@ -1,0 +1,40 @@
+################ jepsen --nodes 3 --duration 90 --seed 101
+jepsen: nodes=3 clients=6 keys=5 duration=90s seed=101 idempotent-retries=True
+
+================ RESULT ================
+operations      : 48427 completed ok, 6 indeterminate (timeouts), 537 ops/s
+faults injected : crash-all x4, kill-majority x5, kill-random x4, partition-halves x6, partition-leader x1, pause-leader x2
+leader failover : median 217 ms, p95 423 ms, max 423 ms  (3 leader faults; time to first committed write)
+   partition-leader  : [217] ms
+   pause-leader      : [423, 213] ms
+replicas        : converged, identical state digest on 3 nodes: applied:40590 digest:e901b565576da8e8 keys:6
+linearizability : VALID  (5 keys, checked in 0.2s)
+################ jepsen --nodes 5 --duration 60 --seed 102 --extra '--snapshot-every 300'
+jepsen: nodes=5 clients=6 keys=5 duration=60s seed=102 idempotent-retries=True
+
+================ RESULT ================
+operations      : 36720 completed ok, 0 indeterminate (timeouts), 612 ops/s
+faults injected : crash-all x2, kill-leader x1, kill-random x3, partition-halves x3, partition-leader x5, pause-leader x1
+leader failover : median 216 ms, p95 267 ms, max 267 ms  (8 leader faults; time to first committed write)
+   kill-leader       : [267] ms
+   kill-random       : [170] ms
+   partition-leader  : [216, 215, 214, 216, 216] ms
+   pause-leader      : [216] ms
+replicas        : converged, identical state digest on 5 nodes: applied:30778 digest:c936bf19a1b2974b keys:6
+linearizability : VALID  (5 keys, checked in 0.2s)
+################ jepsen --nodes 3 --duration 60 --seed 103 --no-idem
+jepsen: nodes=3 clients=6 keys=5 duration=60s seed=103 idempotent-retries=False
+
+================ RESULT ================
+operations      : 29460 completed ok, 47 indeterminate (timeouts), 491 ops/s
+faults injected : crash-all x2, kill-leader x1, kill-majority x2, kill-random x2, partition-halves x1, partition-leader x2, pause-leader x3
+leader failover : median 425 ms, p95 429 ms, max 429 ms  (6 leader faults; time to first committed write)
+   kill-leader       : [162] ms
+   partition-leader  : [215, 214] ms
+   pause-leader      : [429, 425, 429] ms
+replicas        : converged, identical state digest on 3 nodes: applied:25194 digest:c35d1572f4ec4796 keys:6
+linearizability : VALID  (5 keys, checked in 0.1s)
+################ NEGATIVE CONTROL: jepsen --stale-reads (must be flagged)
+operations      : 6788 completed ok, 0 indeterminate (timeouts), 564 ops/s
+linearizability : VIOLATION  (5 keys, checked in 0.0s)
+   key k0: False (<p1 read None -> 10000035 ok [3035347663261..3035348032752]>, 10000036)

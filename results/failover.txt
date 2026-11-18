@@ -1,0 +1,4 @@
+trial 30: killed node 2 -> new leader in  172.3 ms, first committed write after  176.1 ms
+election_ms  n=30  min 155  median 187  mean 196  p95 255  max 264  (ms)
+write_ms     n=30  min 158  median 191  mean 200  p95 260  max 267  (ms)
+config: election timeout 150-300 ms, heartbeat 50 ms, 3 nodes, 1 killed with SIGKILL per trial
